@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .section-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, 400px)) minmax(
+            0,
+            1fr
+          );
+        gap: 2em;
+      }
+      .plain-image-section {
+        background: grey;
+      }
+      .plain-image-section > * {
+        grid-column: 2/-2;
+      }
+      .plain-images {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2em;
+      }
+
+      .plain-image__wrapper--small {
+        width: 200px;
+      }
+      .plain-image__wrapper--large {
+        width: 600px;
+      }
+      .plain-image__wrapper--small > img,
+      .plain-image__wrapper--large > img {
+        width: 100%;
+      }
+      .bg-img-section > * {
+        grid-column: 2/-2;
+      }
+      .bg-img-section:nth-child(2) {
+        background-color: aquamarine;
+      }
+      .bg-img {
+        background-image: url(asset/cook.png);
+        border: 1px solid red;
+        width: 500px;
+        height: 300px;
+      }
+      .bg-img-cover {
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        aspect-ratio: 210/341;
+      }
+      h2,
+      p {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="plain-image-section section-grid">
+      <h1>
+        Images using img tag doesnt get cropped when made smaller or larger
+      </h1>
+      <div class="plain-images">
+        <div class="plain-image">
+          <div class="plain-image__wrapper">
+            <img src="asset/cook.png" alt="" />
+          </div>
+          <p class="text">Original Image using img tag 420px x 682px</p>
+        </div>
+        <div class="plain-image">
+          <div class="plain-image__wrapper plain-image__wrapper--small">
+            <img src="asset/cook.png" alt="" />
+          </div>
+          <p class="text">Image : width 200px Image doesnt get cropped</p>
+        </div>
+        <div class="plain-image">
+          <div class="plain-image__wrapper plain-image__wrapper--large">
+            <img src="asset/cook.png" alt="" />
+          </div>
+          <p class="text">Image : width 600px Image doesnt get cropped</p>
+        </div>
+      </div>
+    </section>
+    <section class="bg-img-section section-grid">
+      <h1>
+        Bg Images will get cropped if bg size set to cover and bg img apect raio
+        is different from conatiner aspect ratio
+      </h1>
+      <div class="bg-img bg-img-normal">
+        <h2>
+          Default bg image . This is 500px x 300px container with 420px x 682px
+          bg img. by default left corner of img coincicdes with left corner of
+          the cotainer div and it repeats. Notice the image gets cropped
+          vertically as the container height (300px) is smaller than the image
+          height 682px
+        </h2>
+      </div>
+      <div class="bg-img bg-img-cover">
+        <p>
+          This div is same width as above but with bg-img set to cover and no
+          height but aspect ratio same as image aspect ratio in which case
+          nothing gets cropped. This is the part to remember : for bg-img set to
+          cover bg- Images will get cropped if the container aspect ratio doesnt
+          match bg-img aspect ratio .
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      img {
+        width: 800px;
+        height: 200px;
+      }
+      .object-fit {
+        object-fit: cover;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      Object Fit : You can apply any width or height to an img tag and use
+      object-fit:cover. This will make it behave as bg img and prevent image
+      from stretching when changed aspect-ratio dont match the image intrinsic
+      aspect ratio
+    </h3>
+    <div class="img-wrapper">
+      <p>
+        For the below img tag a width and height has been set altering the
+        aspect ratio. Thus the image appears stretched
+      </p>
+      <img src="asset/cook-original.png" alt="" />
+    </div>
+    <hr />
+    <div class="img-wrapper">
+      <p>
+        For the below img tag a width and height has been set altering the
+        aspect ratio. Thus the image appears stretched .To fix this we used
+        object fit on the image itself. this allows the image to behave as
+        background image . We used cover preserving the aspect ratio but the
+        image might be cropped .
+      </p>
+      <img class="object-fit" src="asset/cook-original.png" alt="" />
+    </div>
+  </body>
+</html>
