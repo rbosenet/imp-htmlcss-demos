@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .main-grid {
+        display: grid;
+        grid-template-columns: minmax(2em, 1fr) minmax(0, 980px) minmax(
+            2em,
+            1fr
+          );
+      }
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column: 2/-2;
+        gap: 2em;
+      }
+      .post-grid__bg-img {
+        background-image: url("asset/normal-version.jpg");
+        padding-top: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .post-grid__bg-img--square {
+        background-image: url("asset/square-version.png");
+        padding-top: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .high {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      style="
+        max-width: 980px;
+        margin: 2em auto;
+        font-family: sans-serif;
+        line-height: 1.6;
+      "
+    >
+      <h1>
+        Understanding the <span class="high">padding-top:100%</span> and
+        <span class="high"> background-position:cover and image cropping</span>
+      </h1>
+
+      <hr />
+
+      <h2>
+        1. Why <code>padding-top: 100% on .post-grid__bg-img</code> is used
+      </h2>
+
+      <p>
+        The image containers use
+        <code>padding-top: 100% on on .post-grid__bg-img </code> to control
+        height.
+      </p>
+
+      <p>
+        In CSS,
+        <strong
+          >vertical padding percentages are calculated based on the element’s
+          width</strong
+        >, not its height.
+      </p>
+
+      <p>So when we write:</p>
+
+      <pre><code>padding-top: 100%;</code></pre>
+
+      <p>it means:</p>
+
+      <ul>
+        <li>Height becomes equal to width</li>
+        <li>The element always stays <strong>1:1 (square)</strong></li>
+        <li>The square remains responsive on all screen sizes</li>
+      </ul>
+
+      <h2>
+        2. why background image in first post gets cropped but not second post
+      </h2>
+
+      <p>
+        Each post-grid__bg-img is square . In first post image is not
+        intrinsicly square (that is aspect ratio is not equal to 1:1 so image
+        gets cropped). In second post background image has been edited to be 1:1
+        or squared and nothing gets cropped
+      </p>
+
+      <hr />
+    </section>
+    <div class="main-grid">
+      <div class="post-grid">
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img"></div>
+          <h2 class="post-grid__title">
+            This is the normal background image post
+          </h2>
+        </div>
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img--square"></div>
+          <h2 class="post-grid__title">
+            Here the same bg image is changed to square. Notice doesnt get
+            cropped
+          </h2>
+        </div>
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img"></div>
+          <h2 class="post-grid__title">This is the 3rd post</h2>
+        </div>
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img"></div>
+          <h2 class="post-grid__title">This is the 4th post</h2>
+        </div>
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img"></div>
+          <h2 class="post-grid__title">This is the 5th post</h2>
+        </div>
+        <div class="post-grid__item">
+          <div class="post-grid__bg-img"></div>
+          <h2 class="post-grid__title">This is the 6th post</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
